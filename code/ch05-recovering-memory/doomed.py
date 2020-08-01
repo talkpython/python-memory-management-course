@@ -1,0 +1,14 @@
+class Doomed:
+    def __init__(self, *friends):
+        self.friends = friends
+        print(f"Created Doomed object at {id(self)}")
+
+    def __del__(self):
+        print(f"DEL Doomed object at {id(self)}")
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return f'Doomed object @ {id(self)}' + \
+               (f' with {len(self.friends)}' if self.friends else '')
