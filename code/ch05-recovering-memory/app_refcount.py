@@ -4,6 +4,7 @@ from doomed import Doomed
 
 
 def main():
+    print("Running reference counting demo!")
     gc.disable()
 
     v1 = Doomed()

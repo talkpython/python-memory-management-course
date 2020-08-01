@@ -1,6 +1,6 @@
 class Doomed:
     def __init__(self, *friends):
-        self.friends = friends
+        self.friends = list(friends)
         print(f"Created Doomed object at {id(self)}")
 
     def __del__(self):
