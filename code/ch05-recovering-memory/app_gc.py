@@ -21,10 +21,14 @@ def main():
     v2 = None
     print(f"Step 2: Ref counts are {memutil.refs(id1)} & {memutil.refs(id2)}")
 
-    data = []
+    # data = []
+    # for i in range(1_000):
+    #     x = i ** 2
+    #     data.append(list(str(x) * 100))
+
     for i in range(1_000):
         x = i ** 2
-        data.append(list(str(x) * 100))
+        y = str(x) * 100
 
     print(f"Step 3: Ref counts are {memutil.refs(id1)} & {memutil.refs(id2)}")
 
