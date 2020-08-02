@@ -3,6 +3,7 @@ import os
 import random
 import sys
 import pandas as pd
+import numpy as np
 from typing import List
 
 from persondetail import PersonDetail
@@ -43,6 +44,12 @@ def main():
     ages_series = pd.Series(ages, dtype='int8')
     df = pd.concat([names_series, ages_series], axis=1)
     print(f"DF: \t{size_util.get_full_size(df) / 1024:,.0f} KB")
+
+    print("Storing them as numpy arrays:")
+    np_ages = np.array(ages, dtype='int8')
+    print(f"DF: \t{size_util.get_full_size(np_ages) / 1024:,.0f} KB")
+
+    print("Done!")
 
 
 def generate_ages(count):
