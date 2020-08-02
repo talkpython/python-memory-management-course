@@ -1,3 +1,4 @@
+import array
 import os
 import random
 import sys
@@ -30,7 +31,11 @@ def main():
     people_size = size_util.get_full_size(people)
     print(f"Cls: \t{people_size / 1024:,.0f} KB")
 
-
+    print("Storing them as arrays:")
+    ar = array.array('B')
+    ar.fromlist(ages)
+    array_size = size_util.get_full_size(ar)
+    print(f"Array: \t{array_size / 1024:,.0f} KB")
 
 
 def generate_ages(count):
