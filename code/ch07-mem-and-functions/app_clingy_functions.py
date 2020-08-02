@@ -5,6 +5,7 @@
 # https://pythonspeed.com/articles/function-calls-prevent-garbage-collection/
 # Hear more on Talk Python: https://talkpython.fm/274
 #
+import datetime
 import os
 import random
 import sys
@@ -36,6 +37,8 @@ def main():
     # Took 69 MB in single-variable mode
     start_mem = report("Starting")
 
+    t0 = datetime.datetime.now()
+
     # Using single variable name to ensure data is cleaned
     # as soon as possible by dropping references to intermediate step data.
     data = load_data(); report("Load")
@@ -46,7 +49,8 @@ def main():
     print("Tail", data[-5:])
 
     final_mem = report("done")
-    print(f"Done, mem usage: {final_mem-start_mem:,.0f} MB.")
+    dt = datetime.datetime.now() - t0
+    print(f"Done, mem usage: {final_mem - start_mem:,.0f} MB, in {dt.total_seconds():.2f} sec")
 
 
 def report(step_name: str):
