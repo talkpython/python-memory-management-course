@@ -2,6 +2,7 @@ import array
 import os
 import random
 import sys
+import pandas as pd
 from typing import List
 
 from persondetail import PersonDetail
@@ -36,6 +37,12 @@ def main():
     ar.fromlist(ages)
     array_size = size_util.get_full_size(ar)
     print(f"Array: \t{array_size / 1024:,.0f} KB")
+
+    print("Storing them as Pandas DataFrames:")
+    names_series = pd.Series(names, dtype='string')
+    ages_series = pd.Series(ages, dtype='int8')
+    df = pd.concat([names_series, ages_series], axis=1)
+    print(f"DF: \t{size_util.get_full_size(df) / 1024:,.0f} KB")
 
 
 def generate_ages(count):
