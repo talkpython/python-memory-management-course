@@ -1,5 +1,6 @@
 import weakref
 
+import friend_map
 from person import Person
 
 
@@ -10,12 +11,13 @@ def main():
     p3 = Person('Zoe')
 
     if input('Create cycle [y/n]? ') == 'y':
-        # TODO: Improve this with new data structures
-        p1.friends.append(p2)
-        p2.friends.append(p1)
+        friend_map.add_friend(p1, p2)
+        friend_map.add_friend(p2, p1)
 
-    print(f"Is {p1.name} a friend of {p2.name}? {'Yes' if p1 in p2.friends else 'No'}.")
-    print(f"Is {p1.name} a friend of {p3.name}? {'Yes' if p1 in p3.friends else 'No'}.")
+    print(f"Is {p1.name} a friend of {p2.name}? {'Yes' if friend_map.is_friend(p2, p1) else 'No'}.")
+    print(f"Is {p1.name} a friend of {p3.name}? {'Yes' if friend_map.is_friend(p3, p1) else 'No'}.")
+
+    print([p.name for p in friend_map.get_friends(p1)])
 
     w1 = weakref.ref(p1)
     w2 = weakref.ref(p2)
