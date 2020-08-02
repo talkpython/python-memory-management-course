@@ -17,9 +17,9 @@ import size_util
 random.seed(42)
 
 
-def main():
+def greedy_main():
     # Took 83 MB in naive mode
-    report("Starting")
+    start_mem = report("Starting")
 
     original = load_data(); report("Load")
     filtered = filter_data(original); report("filtered")
@@ -28,13 +28,30 @@ def main():
     print("Head", scaled[:5])
     print("Tail", scaled[-5:])
 
-    report("done")
-    print("Done!")
+    final_mem = report("done")
+    print(f"Done, mem usage: {final_mem-start_mem:,.0f} MB.")
+
+
+def main():
+    # Took 69 MB in single-variable mode
+    start_mem = report("Starting")
+
+    # Using single variable name to ensure data is cleaned
+    # as soon as possible by dropping references to intermediate step data.
+    data = load_data(); report("Load")
+    data = filter_data(data); report("filtered")
+    data = scale_data(data, 2.718); report("scaled")
+
+    print("Head", data[:5])
+    print("Tail", data[-5:])
+
+    final_mem = report("done")
+    print(f"Done, mem usage: {final_mem-start_mem:,.0f} MB.")
 
 
 def report(step_name: str):
     print(f"{step_name}:", end=' ')
-    size_util.report_process_mem()
+    return size_util.report_process_mem()
 
 
 def load_data() -> List[int]:
