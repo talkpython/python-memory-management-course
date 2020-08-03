@@ -1,3 +1,4 @@
 psutil
 pandas
 numpy
+memory_profiler
