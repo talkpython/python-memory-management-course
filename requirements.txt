@@ -3,3 +3,4 @@ pandas
 numpy
 memory_profiler
 matplotlib
+filprofiler

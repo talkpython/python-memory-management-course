@@ -16,7 +16,7 @@ from memory_profiler import profile
 random.seed(42)
 
 
-@profile
+# @profile
 def main():
     original = load_data()
     filtered = filter_data(original)
