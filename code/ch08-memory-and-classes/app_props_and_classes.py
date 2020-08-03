@@ -7,7 +7,7 @@ folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'ch03-mem
 sys.path.insert(0, folder)
 import size_util
 
-from props_people import PersonNaive, PersonEfficient
+from props_people import PersonNaive, PersonEfficient, PersonEfficientSlotted
 
 Person = PersonNaive
 
@@ -19,12 +19,21 @@ def main():
     retirement_summary()
     crowd = create_a_crowd()
     print(f"Size of crowd: {size_util.get_full_size(crowd) / 1024 / 1024:,.0f} MB")
+    print()
 
     Person = PersonEfficient
     print(f"Running with person implementation: {Person.__name__}...")
     retirement_summary()
     crowd = create_a_crowd()
     print(f"Size of crowd: {size_util.get_full_size(crowd) / 1024 / 1024:,.0f} MB")
+    print()
+
+    Person = PersonEfficientSlotted
+    print(f"Running with person implementation: {Person.__name__}...")
+    retirement_summary()
+    crowd = create_a_crowd()
+    print(f"Size of crowd: {size_util.get_full_size(crowd) / 1024 / 1024:,.0f} MB")
+    print()
 
 
 def retirement_summary():
